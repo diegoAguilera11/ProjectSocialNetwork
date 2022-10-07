@@ -33,7 +33,7 @@
                     <input id="username" name="username" type="text" placeholder="Ingresa tu nombre de usuario"
                         class="border p-3 w-full rounded-lg @error('username') border-red-500
                     @enderror"
-                        value="{{ old('name') }}" />
+                        value="{{ old('username') }}" />
 
                     @error('username')
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
@@ -69,7 +69,7 @@
                     <label for="password_confirmation" class="mb-2 block uppercase text-gray-500 font-bold">
                         Confirmar contraseña
                     </label>
-                    <input id="passowrd_confirmation" name="password_confirmation" type="password_confirmation"
+                    <input id="passowrd_confirmation" name="password_confirmation" type="password"
                         placeholder="Ingresa tu contraseña" class="border p-3 w-full rounded-lg" />
                 </div>
 
