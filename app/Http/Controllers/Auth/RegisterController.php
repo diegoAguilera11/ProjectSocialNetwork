@@ -15,19 +15,16 @@ class RegisterController extends Controller
         return view('auth.register');
     }
 
-    public function auth()
-    {
-    }
-
     public function store(Request $request)
     {
 
-        // Mos¿dificar el Request
+        // Modificar el Request
         $request->request->add(['username' => Str::slug($request->username)]);
+        $request->request->add(['email' => Str::lower($request->email)]);
 
         // Validacion
         $this->validate($request, [
-            'name' => 'required|min:2|max:20',
+            'name' => ['required', 'min:2', 'max:20',  'regex:/^[a-zA-ZÁ-ÿ]+$/'],
             'username' => 'required|min:4|max:20|unique:users',
             'email' => 'required|unique:users|email|max:60',
             'password' => 'required|confirmed|min:10'

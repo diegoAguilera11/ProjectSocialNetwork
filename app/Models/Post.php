@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Comentario;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
 {
@@ -15,4 +16,25 @@ class Post extends Model
         'imagen',
         'user_id',
     ];
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class)->select(['name', 'username', 'email']);
+    }
+
+    public function comentarios()
+    {
+        return $this->hasMany(Comentario::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function checkLike(User $user)
+    {
+        return $this->likes->contains('user_id', $user->id);
+    }
 }
